@@ -1,7 +1,6 @@
 <html>
   <h1>Binary search tree</h1>
   <script>
-
     //create a node class
     class Node {
       constructor(key) {
@@ -175,15 +174,42 @@
           console.log(JSON.stringify(jsonTree, null, 2));
         }
       }
+
+      searchNode(node, key) {
+        if (!node) return null;
+        if (key == node.key) {
+           console.log("xxxxxx");
+            return true};
+        if (key < node.key) {
+          return this.searchNode(node.left, key);
+        }
+        if (key > node.key) {
+          return this.searchNode(node.right, key);
+        } else {
+          return false;
+        }
+      }
     }
 
     const avl = new BST();
 
     // Insert nodes
-    const keys = [10, 20, 30, 40, 50];
-    keys.forEach((key) => avl.insertKey(key));
-    console.log("After insertion");
-    avl.display();
+    for (let i = 0; i < 500; i++) {
+      avl.insertKey(i);
+    }
+
+    //Delete nodes
+    for (let i = 100; i < 400; i++) {
+        avl.deleteKey(i);
+    }
+
+    //search nodes
+    const x = avl.searchNode(avl.root, 50);
+    if (x) {
+      console.log("true");
+    } else {
+      console.log("false");
+    }
 
     // Update node (10 to 20)
     avl.updateKey(10, 20);
